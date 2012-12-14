@@ -77,7 +77,7 @@ source $SAGACITY_MAIN/core/interaction.sh
 source $SAGACITY_MAIN/core/completion.sh
 
 # STEP 3: allow the user to define his/her own sagacious extensions
-export SAGACITY_CLEVER_EXTENSIONS=$HOME/.sagacity/extensions
+export SAGACITY_CLEVER_EXTENSIONS=$HOME/.sagacity.custom/extensions
 
 # STEP 4: load our mainstream plugins
 for src in $SAGACITY_PLUGINS/*.sh; do
