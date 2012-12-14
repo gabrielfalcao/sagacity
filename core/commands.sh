@@ -31,7 +31,7 @@ sagacity.load (){
 
 sagacity.update (){
     has_diff=$(cd $SAGACITY_MAIN && git diff --shortstat origin/master)
-    output=$(cd $SAGACITY_MAIN && git reset --hard origin/master 2>&1)
+    output=$(cd $SAGACITY_MAIN && git reset --hard origin/master && git pull origin master 2>&1)
     if [ "$?" != "0" ];then
         sagacity.ansi.red "Failed to update sagacity.\n";
         sagacity.ansi.yellow "Cause:\n";
