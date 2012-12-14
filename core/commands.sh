@@ -37,7 +37,7 @@ sagacity.update (){
         sagacity.ansi.yellow "Cause:\n";
         sagacity.ansi.red "$output\n";
     else
-        sagacity.ansi.green "Sagacity is up-to-data\n";
+        sagacity.ansi.green "Sagacity is up-to-date\n";
         sagacity.ansi.green "$has_diff\n";
         source $SAGACITY_MAIN/setup.sh;
     fi;
