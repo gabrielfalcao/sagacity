@@ -10,6 +10,15 @@ Among its features it includes:
 curl https://raw.github.com/gabrielfalcao/sagacity/master/install.sh | bash
 ```
 
+## Updating
+
+It's easy to update sagacity and get the newest plugins, just run in
+your bash:
+
+```shell
+sagacity.update
+```
+
 ## Dropbox backup of projects
 
 * Leveraging a project structure divided within categories "work",
