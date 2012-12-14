@@ -24,7 +24,10 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 
 DESTINATION=$HOME/.sagacity
-git clone -q git@github.com:gabrielfalcao/sagacity.git $DESTINATION
+
+if [ ! -e "$DESTINATION" ]; then
+    git clone -q git@github.com:gabrielfalcao/sagacity.git $DESTINATION
+fi;
 
 if ! grep -qc "$DESTINATION/setup.sh" $HOME/.bash_profile; then
     echo "source $DESTINATION/setup.sh" >> $HOME/.bash_profile
@@ -36,4 +39,4 @@ fi
 echo "source '$DESTINATION/setup.sh' now and start enjoying sagacity."
 echo
 echo "Thanks for using Sagacity,"
-echo "                 Gabriel Falcao"
+echo "                 Gabriel Falcao (http://github.com/gabrielfacao)"
