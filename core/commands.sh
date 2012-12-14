@@ -26,16 +26,19 @@
 sagacity.load (){
     # loads plugins by name
     name=$1
-    eval sagacity.plugins.$name.load
+    eval sagacity.plugins.$name.load;
 }
 
 sagacity.update (){
-    (cd $SAGACITY_MAIN && git pull --rebase 2>&1) 2>&1> $TMPDIR/sagacity.log
+    has_diff=$(cd $SAGACITY_MAIN && git diff --shortstat origin/master)
+    output=$(cd $SAGACITY_MAIN && git reset --hard origin/master 2>&1)
     if [ "$?" != "0" ];then
         sagacity.ansi.red "Failed to update sagacity.\n";
         sagacity.ansi.yellow "Cause:\n";
-        sagacity.ansi.red `cat $TMPDIR/sagacity.log`
+        sagacity.ansi.red "$output\n";
     else
-        sagacity.ansi.green "Done\n";
+        sagacity.ansi.green "Sagacity is up-to-data\n";
+        sagacity.ansi.green "$has_diff\n";
+        source $SAGACITY_MAIN/setup.sh;
     fi;
 }
