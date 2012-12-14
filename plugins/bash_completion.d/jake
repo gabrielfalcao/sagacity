@@ -1,0 +1,10 @@
+_complete_jake () {
+    local cur opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    opts=`jake -T | sed 's,^[^m]*m\([a-zA-Z0-9]*\).*,\1,g' | awk '{ print $1 }' | xargs`
+    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+    return 0
+
+}
+complete -F _complete_jake jake

@@ -1,0 +1,15 @@
+#!/bin/bash
+# This hook is run after every virtualenv is activated.
+virtualenv_name=`echo $VIRTUAL_ENV | sed 's,.*/,,g'`
+
+for path in `ls $HOME/projects/`;
+do
+    potential_path=$HOME/projects/$path/$virtualenv_name
+    if [ -e "$potential_path" ]; then
+        pushd $potential_path;
+        yipit_bash_profile="$potential_path/conf/yipit_bash_profile"
+        if [ -e $yipit_bash_profile ]; then
+            source $yipit_bash_profile;
+        fi;
+    fi;
+done;
