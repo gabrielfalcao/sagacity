@@ -27,6 +27,11 @@ export SAGACITY_VENV_HOME=$SAGACITY_MAIN/@virtualenvs
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
+export VENVWRAPPER_PATH=`which virtualenvwrapper.sh`
+if [ -e "$VENVWRAPPER_PATH" ]; then
+    source $VENVWRAPPER_PATH
+fi;
+
 sagacity.plugins.virtualenv.link_hook (){
     sagacity_name=$1
     dotname=$2
