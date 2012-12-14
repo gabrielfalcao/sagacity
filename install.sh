@@ -24,19 +24,28 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 
 DESTINATION=$HOME/.sagacity
+REPO=git://github.com/gabrielfalcao/sagacity.git
 
 if [ ! -e "$DESTINATION" ]; then
-    git clone -q git://github.com/gabrielfalcao/sagacity.git $DESTINATION
+    git clone -q $REPO $DESTINATION
 fi;
 
 if ! grep -qc "$DESTINATION/setup.sh" $HOME/.bash_profile; then
     echo "source $DESTINATION/setup.sh" >> $HOME/.bash_profile
     echo "Sagacity is now active for the next bash sessions."
 else
-    echo "It looks like Sagacity is already installed."
+    (cd $DESTINATION && git pull $REPO master && cd -)
+    if [ "$?" == "0" ]; then
+        echo "Sagacity was  successfully updated!"
+    else
+        echo "It looks like Sagacity is already installed, but running 'git pull $REPO master' failed"
+    fi;
 fi
 
-echo "source '$DESTINATION/setup.sh' now and start enjoying sagacity."
+source $DESTINATION/setup.sh
+
+echo "Sagacity is active."
+echo "You can find its documentation here: https://github.com/gabrielfalcao/sagacity/blob/master/README.md"
 echo
 echo "Thanks for using Sagacity,"
 echo "                 Gabriel Falcao (http://github.com/gabrielfacao)"
