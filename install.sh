@@ -24,5 +24,16 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 
 DESTINATION=$HOME/.sagacity
-git clone git@github.com:gabrielfalcao/sagacity.git $DESTINATION
-echo 'source $DESTINATION/setup.sh' >> $HOME/.bash_profile
+git clone -q git@github.com:gabrielfalcao/sagacity.git $DESTINATION
+
+if ! grep -qc "$DESTINATION/setup.sh" $HOME/.bash_profile; then
+    echo "source $DESTINATION/setup.sh" >> $HOME/.bash_profile
+    echo "Sagacity is now active for the next bash sessions."
+else
+    echo "It looks like Sagacity is already installed."
+fi
+
+echo "source '$DESTINATION/setup.sh' now and start enjoying sagacity."
+echo
+echo "Thanks for using Sagacity,"
+echo "                 Gabriel Falcao"
