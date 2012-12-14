@@ -26,7 +26,7 @@
 DESTINATION=$HOME/.sagacity
 
 if [ ! -e "$DESTINATION" ]; then
-    git clone -q git@github.com:gabrielfalcao/sagacity.git $DESTINATION
+    git clone -q git://github.com/gabrielfalcao/sagacity.git $DESTINATION
 fi;
 
 if ! grep -qc "$DESTINATION/setup.sh" $HOME/.bash_profile; then
