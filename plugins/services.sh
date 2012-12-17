@@ -94,9 +94,14 @@ service-status-single () {
 }
 
 service-status (){
-    for name in $SAGACITY_SERVICES; do
-        service-status-single $name
-    done;
+    name="$1";
+    if [ ! -z "$name" ]; then
+        service-status-single $name;
+    else
+        for name in $SAGACITY_SERVICES; do
+            service-status-single $name
+        done;
+    fi;
 }
 
 service-run-all (){
@@ -130,3 +135,4 @@ complete -F _complete_service service-stop
 complete -F _complete_service service-log
 complete -F _complete_service service-pid
 complete -F _complete_service service-status-single
+complete -F _complete_service service-status
