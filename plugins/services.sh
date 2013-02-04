@@ -23,9 +23,8 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-export SAGACITY_SERVICES="mysql redis elasticsearch mongo"
+export SAGACITY_SERVICES="mysql redis elasticsearch"
 export SERVICE_LOAD_mysql="mysqld"
-export SERVICE_LOAD_mongo="mongod"
 export SERVICE_LOAD_redis="redis-server /usr/local/etc/redis.conf"
 export SERVICE_LOAD_elasticsearch="elasticsearch -f -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml"
 
@@ -33,7 +32,8 @@ daemonize-service (){
     name=$1
     shift
     cmd=$@
-    cd /tmp && ($@ 2>&1) 2>&1>/tmp/$name.output &
+    lastdir=`pwd`
+    cd /tmp && (nohup $@ 2>&1 &) 2>&1>/tmp/$name.output && cd $lastdir
 }
 
 service-start (){
@@ -54,6 +54,7 @@ service-stop (){
         return 1;
     fi;
     kill -9 $pid
+    service-wait-for-death $name
     service-status-single $name
 }
 
@@ -63,12 +64,24 @@ service-pid (){
     echo $(ps aux | egrep $name | grep -v grep | awk '{ print $2 }' | xargs)
 }
 
+service-wait-for-death () {
+    name=$1
+    for attempt in {1..100}; do
+        pid=$(service-pid $name)
+        if [ ! -z "$pid" ]; then
+            sleep 0.1
+        else
+            break;
+        fi;
+    done;
+}
+
 service-wait-for () {
     name=$1
     for attempt in {1..100}; do
         pid=$(service-pid $name)
         if [ -z "$pid" ]; then
-            sleep 0.01
+            sleep 0.1
         else
             break;
         fi;
