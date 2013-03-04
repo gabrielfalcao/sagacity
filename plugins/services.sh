@@ -23,10 +23,12 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-export SAGACITY_SERVICES="mysql redis elasticsearch"
 export SERVICE_LOAD_mysql="mysqld"
 export SERVICE_LOAD_redis="redis-server /usr/local/etc/redis.conf"
 export SERVICE_LOAD_elasticsearch="elasticsearch -f -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml"
+export SERVICE_LOAD_postgres="postgres -D /usr/local/var/postgres"
+
+export SAGACITY_SERVICES=`env | egrep SERVICE_LOAD_ | cut -d= -f1 | gsed 's,^SERVICE_LOAD_,,g' | xargs`
 
 daemonize-service (){
     name=$1
