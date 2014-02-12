@@ -80,3 +80,9 @@ sagacity.plugins.virtualenv.load() {
         fi;
     done;
 }
+
+
+update-requirements() {
+    pip freeze | egrep -v "(`cat requirements.txt | sed 's,[=].*,,g' | xargs | sed 's, ,|,g'`)" >> development.txt
+    pip freeze | egrep -v "(`cat development.txt | sed 's,[=].*,,g' | xargs | sed 's, ,|,g'`)" >> requirements.txt
+}
