@@ -25,19 +25,19 @@
 
 
 # ansi color codes
-SAGACITY_ANSI_GRAY="30";
-SAGACITY_ANSI_RED="31";
-SAGACITY_ANSI_GREEN="32";
-SAGACITY_ANSI_YELLOW="33";
-SAGACITY_ANSI_BLUE="34";
-SAGACITY_ANSI_PURPLE="35";
-SAGACITY_ANSI_CYAN="36";
-SAGACITY_ANSI_WHITE="37";
+SAGACITY_ANSI_GRAY="30m";
+SAGACITY_ANSI_RED="31m";
+SAGACITY_ANSI_GREEN="32m";
+SAGACITY_ANSI_YELLOW="33m";
+SAGACITY_ANSI_BLUE="34m";
+SAGACITY_ANSI_PURPLE="35m";
+SAGACITY_ANSI_CYAN="36m";
+SAGACITY_ANSI_WHITE="37m";
 
 # ansi instructions
 SAGACITY_ANSI_NC="\033[0m";
-SAGACITY_ANSI_BRIGHT="\033[1";
-SAGACITY_ANSI_DARK="\033[0";
+SAGACITY_ANSI_BRIGHT="\033[1;";
+SAGACITY_ANSI_DARK="\033[0;";
 
 # aliases
 SAGACITY_ANSI_GREY=$SAGACITY_ANSI_GRAY
@@ -60,25 +60,31 @@ sagacity.ansi.print() {
     sagacity.ansi.print.bright "$@"
 }
 
-sagacity.ansi.red () { sagacity.ansi.print "$SAGACITY_ANSI_RED$@"; }
-sagacity.ansi.green () { sagacity.ansi.print "$SAGACITY_ANSI_GREEN$@"; }
-sagacity.ansi.yellow () { sagacity.ansi.print "$SAGACITY_ANSI_YELLOW$@"; }
-sagacity.ansi.white () { sagacity.ansi.print "$SAGACITY_ANSI_WHITE$@"; }
-sagacity.ansi.gray () { sagacity.ansi.print "$SAGACITY_ANSI_GRAY$@"; }
-sagacity.ansi.grey () { sagacity.ansi.print "$SAGACITY_ANSI_GREY$@"; }
-
-
-sagacity.ansi.bright.red () { sagacity.ansi.print.bright "$SAGACITY_ANSI_RED$@"; }
-sagacity.ansi.bright.green () { sagacity.ansi.print.bright "$SAGACITY_ANSI_GREEN$@"; }
-sagacity.ansi.bright.yellow () { sagacity.ansi.print.bright "$SAGACITY_ANSI_YELLOW$@"; }
-sagacity.ansi.bright.white () { sagacity.ansi.print.bright "$SAGACITY_ANSI_WHITE$@"; }
-sagacity.ansi.bright.gray () { sagacity.ansi.print.bright "$SAGACITY_ANSI_GRAY$@"; }
-sagacity.ansi.bright.grey () { sagacity.ansi.print.bright "$SAGACITY_ANSI_GREY$@"; }
-
-
+sagacity.ansi.dark.gray () { sagacity.ansi.print.dark "$SAGACITY_ANSI_GRAY$@"; }
 sagacity.ansi.dark.red () { sagacity.ansi.print.dark "$SAGACITY_ANSI_RED$@"; }
 sagacity.ansi.dark.green () { sagacity.ansi.print.dark "$SAGACITY_ANSI_GREEN$@"; }
 sagacity.ansi.dark.yellow () { sagacity.ansi.print.dark "$SAGACITY_ANSI_YELLOW$@"; }
+sagacity.ansi.dark.blue () { sagacity.ansi.print.dark "$SAGACITY_ANSI_BLUE$@"; }
+sagacity.ansi.dark.purple () { sagacity.ansi.print.dark "$SAGACITY_ANSI_PURPLE$@"; }
+sagacity.ansi.dark.cyan () { sagacity.ansi.print.dark "$SAGACITY_ANSI_CYAN$@"; }
 sagacity.ansi.dark.white () { sagacity.ansi.print.dark "$SAGACITY_ANSI_WHITE$@"; }
-sagacity.ansi.dark.gray () { sagacity.ansi.print.dark "$SAGACITY_ANSI_GRAY$@"; }
-sagacity.ansi.dark.grey () { sagacity.ansi.print.dark "$SAGACITY_ANSI_GREY$@"; }
+
+
+sagacity.ansi.bright.gray () { sagacity.ansi.print.bright "$SAGACITY_ANSI_GRAY$@"; }
+sagacity.ansi.bright.red () { sagacity.ansi.print.bright "$SAGACITY_ANSI_RED$@"; }
+sagacity.ansi.bright.green () { sagacity.ansi.print.bright "$SAGACITY_ANSI_GREEN$@"; }
+sagacity.ansi.bright.yellow () { sagacity.ansi.print.bright "$SAGACITY_ANSI_YELLOW$@"; }
+sagacity.ansi.bright.blue () { sagacity.ansi.print.bright "$SAGACITY_ANSI_BLUE$@"; }
+sagacity.ansi.bright.purple () { sagacity.ansi.print.bright "$SAGACITY_ANSI_PURPLE$@"; }
+sagacity.ansi.bright.cyan () { sagacity.ansi.print.bright "$SAGACITY_ANSI_CYAN$@"; }
+sagacity.ansi.bright.white () { sagacity.ansi.print.bright "$SAGACITY_ANSI_WHITE$@"; }
+
+
+sagacity.ansi.gray () { sagacity.ansi.print "$SAGACITY_ANSI_GRAY$@"; }
+sagacity.ansi.red () { sagacity.ansi.print "$SAGACITY_ANSI_RED$@"; }
+sagacity.ansi.green () { sagacity.ansi.print "$SAGACITY_ANSI_GREEN$@"; }
+sagacity.ansi.yellow () { sagacity.ansi.print "$SAGACITY_ANSI_YELLOW$@"; }
+sagacity.ansi.blue () { sagacity.ansi.print "$SAGACITY_ANSI_BLUE$@"; }
+sagacity.ansi.purple () { sagacity.ansi.print "$SAGACITY_ANSI_PURPLE$@"; }
+sagacity.ansi.cyan () { sagacity.ansi.print "$SAGACITY_ANSI_CYAN$@"; }
+sagacity.ansi.white () { sagacity.ansi.print "$SAGACITY_ANSI_WHITE$@"; }

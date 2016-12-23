@@ -36,7 +36,16 @@ sagacity.plugins.projects.goto () {
     pushd $optimal_path
 }
 w () { sagacity.plugins.projects.goto work $*; }
-p () { sagacity.plugins.projects.goto personal $*; }
+p () {
+    param=$(echo "$1" | awk '{print tolower($0)}')
+    if [ "${param}" == "typora" ] || [ "${param}" == "typora-documents" ]; then
+        pushd ~/StrongSync/typora-documents
+    else
+        sagacity.plugins.projects.goto personal $*;
+    fi
+}
+
+g () { sagacity.plugins.projects.goto go-packages $*; }
 third_party () { sagacity.plugins.projects.goto 3rdparty $*; }
 alias 3=third_party
 
