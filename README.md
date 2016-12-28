@@ -58,3 +58,7 @@ service-status
 service-start redis
 service-stop mysql
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gabrielfalcao/sagacity/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
